@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anusha Layek | Geoinformatics & Geology Portfolio</title>
+  <style>
+    /* --------------------------------------------------
+       CSS VARIABLES & THEME SETUP
+    -------------------------------------------------- */
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --text: #172033;
+      --primary: #1f6f5f;
+      --accent: #e5a93d;
+      --border: #dfe6ef;
+    }
+
+    body.dark {
+      --bg: #0f1722;
+      --surface: #16202d;
+      --text: #edf3f8;
+      --primary: #67c8af;
+      --border: #233143;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
+    }
+
+    /* --------------------------------------------------
+       LAYOUT CONTAINERS & UTILITIES
+    -------------------------------------------------- */
+    .container {
+      width: min(100%, 1180px);
+      margin-inline: auto;
+      padding-inline: 22px;
+    }
+
+    section {
+      padding: 82px 0;
+    }
+
+    /* --------------------------------------------------
+       NAVIGATION
+    -------------------------------------------------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .brand {
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 1.1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* --------------------------------------------------
+       BUTTONS & TAGS
+    -------------------------------------------------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      margin-left: 10px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.85rem;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+
+    /* --------------------------------------------------
+       GRIDS & CARDS
+    -------------------------------------------------- */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .profile-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary);
+    }
+
+    .project-thumb {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    /* --------------------------------------------------
+       RESPONSIVE MEDIA QUERIES
+    -------------------------------------------------- */
+    @media (max-width: 940px) {
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--surface);
+        flex-direction: column;
+        padding: 20px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home">Anusha Layek / Portfolio</a>
+      <button class="nav-toggle" id="menuToggle" aria-label="Toggle Navigation">☰</button>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects & Fieldwork</a></li>
+          <li><a href="#academic">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><button id="themeToggle" style="background:none; border:none; cursor:pointer; font-size:1.2rem;">🌙</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+      <div class="container">
+        <p style="color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Geoinformatics • Geology • Remote Sensing</p>
+        <h1 style="font-size: 2.8rem; margin: 10px 0;">Hi, I'm <span style="color: var(--primary);">Anusha Layek</span></h1>
+        <p style="font-size: 1.2rem; max-width: 750px;">
+          M.Sc. Geoinformatics postgraduate student combining geological field investigations, remote sensing techniques, spatial analysis, and Python workflows for environmental modeling.
+        </p>
+        <div style="margin-top: 25px;">
+          <a class="btn btn-primary" href="#projects">Explore My Work</a>
+          <a class="btn btn-secondary" href="assets/documents/resume.pdf" target="_blank">View Resume (PDF)</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+      <div class="container">
+        <h2>About Me</h2>
+        <div class="card" style="display: flex; gap: 24px; align-items: center; margin-top: 20px;">
+          <img class="profile-img" src="assets/images/profile.jpg" alt="Anusha Layek" onerror="this.style.display='none'">
+          <div>
+            <p>
+              I hold a B.Sc. in Geology (Minor in Physics) from Nowrosjee Wadia College, Pune, and am currently pursuing my M.Sc. in Geoinformatics at Bharati Vidyapeeth Institute of Environment Education and Research (BVIEER), Pune.
+            </p>
+            <p style="margin-top: 10px;">
+              My domain expertise spans field geological studies across Rajasthan, spatial raster modeling, land cover change detection, and transect profiling across Western Ghats ecosystems. I am aiming to contribute to space and remote sensing research institutes like ISRO and NRSC through my work in geomatics engineering.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills">
+      <div class="container">
+        <h2>Technical Skills</h2>
+        <div class="grid-3" style="margin-top: 20px;">
+          <article class="card">
+            <h3>GIS & Remote Sensing</h3>
+            <p>Digital spatial mapping, georeferencing, land cover classification, NDVI calculation, and SAGA/QGIS processing.</p>
+            <div style="margin-top: 12px;">
+              <span class="tag">QGIS</span>
+              <span class="tag">ArcGIS Pro</span>
+              <span class="tag">SAGA GIS</span>
+              <span class="tag">NDVI Analysis</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Geology & Field Operations</h3>
+            <p>Lithological mapping, structural geological cross-sections, field transect mapping, and stratigraphy recording.</p>
+            <div style="margin-top: 12px;">
+              <span class="tag">Structural Geology</span>
+              <span class="tag">Field Mapping</span>
+              <span class="tag">Stratigraphy</span>
+              <span class="tag">Transect Profiling</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Programming & Visualization</h3>
+            <p>Data handling with Python, scientific plotting with Matplotlib, and image manipulation using OpenCV.</p>
+            <div style="margin-top: 12px;">
+              <span class="tag">Python</span>
+              <span class="tag">Matplotlib</span>
+              <span class="tag">OpenCV</span>
+              <span class="tag">Raster Processing</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS & FIELDWORK SECTION -->
+    <section id="projects">
+      <div class="container">
+        <h2>Featured Projects & Fieldwork</h2>
+        <div class="grid-3" style="margin-top: 20px;">
+          
+          <article class="card">
+            <img class="project-thumb" src="assets/images/pashan-lake.png" alt="Pashan Lake Study" onerror="this.style.display='none'">
+            <span class="tag">Spatial Analysis</span>
+            <h3>Pashan Lake Environmental Profile</h3>
+            <p><strong>Problem:</strong> Assessment of urban land cover and environmental impacts around Pashan Lake.</p>
+            <p><strong>Data & Method:</strong> High-resolution spatial imagery, transect cross-sections, and land cover classification.</p>
+            <p><strong>Result:</strong> Characterized vegetation distribution and surrounding anthropogenic impacts.</p>
+          </article>
+
+          <article class="card">
+            <img class="project-thumb" src="assets/images/mulshi-tamhini.png" alt="Mulshi-Tamhini Study" onerror="this.style.display='none'">
+            <span class="tag">LULC Profile</span>
+            <h3>Mulshi–Tamhini Ghat Transect Study</h3>
+            <p><strong>Problem:</strong> Elevation profiles and ecological canopy variations along Western Ghats transects.</p>
+            <p><strong>Data & Method:</strong> Digital Elevation Models (DEM) and raster profile processing in SAGA GIS.</p>
+            <p><strong>Result:</strong> Mapped elevation transects illustrating land cover patterns in high-precipitation zones.</p>
+          </article>
+
+          <article class="card">
+            <span class="tag">Field Geology</span>
+            <h3>Jaisalmer & Jodhpur Structural Fieldwork</h3>
+            <p><strong>Problem:</strong> Structural geology mapping and stratigraphy recording in Rajasthan terrain.</p>
+            <p><strong>Data & Method:</strong> Direct compass clinometer measurements, lithological mapping, and field recording.</p>
+            <p><strong>Result:</strong> Mapped regional sedimentary structures and stratigraphical sequences.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ACADEMIC SECTION -->
+    <section id="academic">
+      <div class="container">
+        <h2>Academic Qualifications</h2>
+        <div class="grid-2" style="margin-top: 20px;">
+          <article class="card">
+            <h3>M.Sc. Geoinformatics</h3>
+            <p><strong>Bharati Vidyapeeth Institute of Environment Education and Research (BVIEER)</strong>, Pune</p>
+            <p style="margin-top: 8px;">Specializing in GIS modeling, remote sensing image processing, Python scripts, and ecological spatial analysis.</p>
+          </article>
+
+          <article class="card">
+            <h3>B.Sc. Geology (Minor in Physics)</h3>
+            <p><strong>Nowrosjee Wadia College</strong>, Pune</p>
+            <p style="margin-top: 8px;">Focused on physical geology, structural geology, mineralogy, petrology, and foundational physics principles.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+      <div class="container">
+        <h2>Contact Details</h2>
+        <div class="card" style="margin-top: 20px;">
+          <p style="margin-bottom: 8px;"><strong>Location:</strong> Pune, Maharashtra, India</p>
+          <p style="margin-bottom: 8px;"><strong>Email:</strong> <a href="mailto:anushalayek@example.com" style="color: var(--primary);">anushalayek@example.com</a></p>
+          <p style="margin-bottom: 8px;"><strong>GitHub:</strong> <a href="https://github.com/anushalayek" target="_blank" style="color: var(--primary);">[github.com/anushalayek</a></p&gt](https://github.com/anushalayek</a></p&gt);
+          <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/anushalayek" target="_blank" style="color: var(--primary);">[linkedin.com/in/anushalayek</a></p&gt](https://linkedin.com/in/anushalayek</a></p&gt);
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="text-align: center; padding: 20px 0; border-top: 1px solid var(--border);">
+      <p>© <span id="year"></span> Anusha Layek. Built with HTML, CSS & JavaScript.</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LAYER -->
+  <script>
+    // Automatic year update
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    // Dark mode toggle & memory
+    const themeToggle = document.getElementById("themeToggle");
+    if (localStorage.getItem("portfolio-theme") === "dark") {
+      document.body.classList.add("dark");
+    }
+
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      const isDark = document.body.classList.contains("dark");
+      localStorage.setItem("portfolio-theme", isDark ? "dark" : "light");
+    });
+  </script>
+</body>
+</html>
